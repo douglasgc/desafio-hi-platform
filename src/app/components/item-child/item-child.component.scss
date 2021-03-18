@@ -1,0 +1,11 @@
+.item-heading {
+    padding: 0px 24px;
+    cursor: pointer;
+    line-height: 42px;
+    button {
+        float: right;
+    }
+        &:hover {
+        background-color: #FFF1;
+    }
+}

@@ -1,0 +1,3 @@
+<div *ngFor="let key of formGroup.controls | keys" class="item">
+    <app-item-child [formGroup]="formGroup.get(key)" [child]="children[key]"></app-item-child>
+</div>
