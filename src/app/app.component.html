@@ -6,6 +6,9 @@
 <div class="container">
   <ng-container *ngIf="genealogyData && !hasError">
     <h3>{{title}}</h3>
+    <div class="update-information" *ngIf="genealogyService.genealogyTimestamp">
+      Sua última atualização foi feita as: {{genealogyService.genealogyTimestamp | date:'hh:mm:ss dd/MM/yyyy'}}
+    </div>
     <app-genealogy-tree [data]="genealogyData" [formGroup]="genealogyFormGroup"></app-genealogy-tree>
   </ng-container>
   <ng-container *ngIf="hasError">

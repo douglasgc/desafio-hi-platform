@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './genealogy-tree.component.html',
   styleUrls: ['./genealogy-tree.component.scss']
 })
-export class GenealogyTreeComponent implements OnInit {
+export class GenealogyTreeComponent {
 
   @Input()
   formGroup: FormGroup;
@@ -15,9 +15,5 @@ export class GenealogyTreeComponent implements OnInit {
   data: any;
 
   constructor() { }
-
-  ngOnInit(): void {
-    console.log(this.data);
-  }
 
 }

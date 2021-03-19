@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { cascadingFormGroup } from '../uilts/cascading-value';
 
 @Component({
@@ -20,18 +20,18 @@ export class ItemChildrenComponent implements OnInit {
   ngOnInit(): void {
     this.buildFormGroup();
   }
-  buildFormGroup() {
-    if (!this.formGroup) return;
+  buildFormGroup(): void {
+    if (!this.formGroup) { return; }
     Object.keys(this.children)
       .map((key) => {
-        let item = this.children[key];
+        const item = this.children[key];
         item.key = key;
         return item;
       })
       .forEach((item) => {
-        let control = new FormGroup(
+        const control = new FormGroup(
           {
-            value: new FormControl(false),
+            value: new FormControl(item.value ?? false),
             name: new FormControl(item.name),
             id: new FormControl(item.id),
             level: new FormControl(item.level),

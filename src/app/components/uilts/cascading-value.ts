@@ -6,4 +6,4 @@ export const cascadingFormGroup = (value: boolean, formGroup: FormGroup, ) => {
         .forEach((control) => {
             control.get('value').setValue(value);
         });
-}
+};

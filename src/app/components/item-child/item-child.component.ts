@@ -14,23 +14,28 @@ export class ItemChildComponent implements OnInit {
   @Input()
   child: any;
 
-  open: boolean = false;
+  open = false;
 
   constructor() { }
+
+  get haveChildren(): boolean {
+    if (!this?.formGroup?.get('children')) { return false; }
+    return true;
+  }
 
   ngOnInit(): void {
   }
 
-  toogleChildren() {
+  toogleChildren(): void {
     this.open = !this.open;
   }
   someComplete(children: any): boolean {
-    if (!children) return false;
+    if (!children) { return false; }
     return Object.keys(children.controls)
       .map((key) => {
-        let item = children.get(key);
+        const item = children.get(key);
         return item.get('value');
       })
-      .some((item) => item.value === true)
+      .some((item) => item.value === true);
   }
 }

@@ -2,17 +2,17 @@
     <div class="item-heading" [attr.name]="formGroup.get('name').value"
         [style.padding-left]=" (24 * formGroup.get('level').value + 24) + 'px'"
         (click)="formGroup.get('value').setValue(!formGroup.get('value').value)">
-        <mat-checkbox class="example-margin" click-stop-propagation [formControl]="formGroup.get('value')"
+        <mat-checkbox class="example-margin" appClickStopPropagation [formControl]="formGroup.get('value')"
             [indeterminate]="formGroup.get('value').value == false ? someComplete(formGroup.get('children')) : false">
             {{formGroup.get('name').value}}
         </mat-checkbox>
-        <button *ngIf="child.children" (click)="toogleChildren()" mat-icon-button click-stop-propagation
+        <button *ngIf="haveChildren" (click)="toogleChildren()" mat-icon-button appClickStopPropagation
             aria-label="Clique para abrir ou fechar este item.">
             <mat-icon>{{open? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}</mat-icon>
         </button>
     </div>
     <div [hidden]="!open" class="item-children">
-        <ng-container *ngIf="formGroup.get('children')">
+        <ng-container *ngIf="haveChildren">
             <app-item-children [children]="child.children" [formGroup]="formGroup.get('children')"></app-item-children>
         </ng-container>
     </div>
