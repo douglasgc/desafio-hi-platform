@@ -41,7 +41,7 @@ aliases:
   - &install_dependencies
     run:
       name: Install Dependencies
-      command: npm install && npm run bootstrap
+      command: npm install
 
   - &run_linter
     run:
