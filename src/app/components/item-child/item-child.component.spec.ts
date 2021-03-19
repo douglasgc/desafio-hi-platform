@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ClickStopPropagationDirective } from '../click-stop-propagation.directive';
+import { ClickStopPropagationDirective } from '../click-stop-propagation/click-stop-propagation.directive';
 import { ItemChildrenComponent } from '../item-children/item-children.component';
 import { KeysPipe } from '../keys/keys.pipe';
 import { ItemChildComponent } from './item-child.component';
