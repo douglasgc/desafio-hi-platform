@@ -9,7 +9,7 @@ import { ItemChildComponent } from './item-child/item-child.component';
 import { ItemChildrenComponent } from './item-children/item-children.component';
 import { KeysPipe } from './keys/keys.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ClickStopPropagationDirective } from './click-stop-propagation.directive';
+import { ClickStopPropagationDirective } from './click-stop-propagation/click-stop-propagation.directive';
 
 @NgModule({
   declarations: [
