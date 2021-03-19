@@ -3,7 +3,7 @@ version: 2
 aliases:
   - &container_config
     docker:
-      - image: circleci/node:12.15
+      - image: circleci/node:12.15-browsers
 
     working_directory: ~/repo
 
@@ -42,12 +42,6 @@ aliases:
     run:
       name: Install Dependencies
       command: npm install
-  - &install_chrome_dependencies
-    run:
-      name: Chrome Dependecies
-      command: |
-        sudo apt-get update
-        sudo apt-get install libnss3
 
   - &run_linter
     run:
@@ -91,7 +85,6 @@ jobs:
       - *install_dependencies
       - *save_cache
       - *run_linter
-      - *install_chrome_dependencies
       - *run_tests
       - *store_test_results
 
