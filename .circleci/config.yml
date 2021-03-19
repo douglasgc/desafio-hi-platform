@@ -1,0 +1,129 @@
+version: 2
+
+aliases:
+  - &container_config
+    docker:
+      - image: circleci/node:12.15
+
+    working_directory: ~/repo
+
+  - &checkout checkout
+
+  - &build_only_filters
+    filters:
+      branches:
+        ignore: /master/
+
+  - &build_and_deploy_qa_filters
+    filters:
+      branches:
+        only: master
+
+  - &build_and_deploy_prod_filters
+    filters:
+      tags:
+        only: /^v.*/
+      branches:
+        ignore: /.*/
+
+  - &save_cache
+    save_cache:
+      paths:
+        - node_modules
+      key: dependencies-cache-v1.0.0-{{ checksum "package-lock.json" }}
+
+  - &restore_cache
+    restore_cache:
+      keys:
+        - dependencies-cache-v1.0.0-{{ checksum "package-lock.json" }}
+        - dependencies-cache
+
+  - &install_dependencies
+    run:
+      name: Install Dependencies
+      command: npm install && npm run bootstrap
+
+  - &run_linter
+    run:
+      name: Run Linter
+      command: npm run lint
+
+  - &run_tests
+    run:
+      name: Run Tests
+      command: npm run test:ci
+
+  - &store_test_results
+    store_test_results:
+      path: reports/junit
+
+  - &install_aws_cli
+    run:
+      name: Install awscli
+      command: |
+        sudo apt-get update
+        sudo apt-get install python3.5-dev
+        curl -O https://bootstrap.pypa.io/get-pip.py
+        python3.5 get-pip.py --user
+        pip install awscli --upgrade --user
+  - &deploy_qa
+      - run:
+          name: Deploy services to QA
+          command: npm run deploy
+          no_output_timeout: 10m
+  - &deploy_prod
+      - run:
+          name: Deploy services to PROD
+          command: npm run deploy:prod
+          no_output_timeout: 10m
+jobs:
+  build:
+    <<: *container_config
+
+    steps:
+      - *checkout
+      - *install_dependencies
+      - *save_cache
+      - *run_linter
+      - *store_test_results
+
+  deploy-qa:
+    <<: *container_config
+
+    steps:
+      - *checkout
+      - *restore_cache
+      - *install_aws_cli
+      - *deploy_qa
+  deploy-prod:
+    <<: *container_config
+
+    steps:
+      - *checkout
+      - *restore_cache
+      - *install_aws_cli
+      - *deploy_prod
+workflows:
+  version: 2
+  build-only:
+    jobs:
+      - build:
+          <<: *build_only_filters
+
+  build-and-deploy-qa:
+    jobs:
+      - build:
+          <<: *build_and_deploy_qa_filters
+      - deploy-qa:
+          requires:
+            - build
+          <<: *build_and_deploy_qa_filters
+
+  build-and-deploy-prod:
+    jobs:
+      - build:
+          <<: *build_and_deploy_prod_filters
+      - deploy-prod:
+          requires:
+            - build
+          <<: *build_and_deploy_prod_filters
