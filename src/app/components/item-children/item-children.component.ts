@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { cascadingFormGroup } from '../uilts/cascading-value';
+import { cascadingFormGroup } from '../utils/cascading-value';
 
 @Component({
   selector: 'app-item-children',
