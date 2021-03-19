@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
-    "e2e": "ng e2e",
+    "e2e": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
     "postinstall": "ngcc",
     "deploy": "ng build --prod && aws s3 sync dist/prova-frontend/ s3://app-react-micro --acl public-read && aws cloudfront create-invalidation --distribution-id E1BL9JLOF0QMLI --paths '/*'",
     "deploy:prod": "ng build --prod && aws s3 sync dist/prova-frontend/ s3://app-react-micro --acl public-read && aws cloudfront create-invalidation --distribution-id E1BL9JLOF0QMLI --paths '/*'"
