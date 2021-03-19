@@ -85,6 +85,7 @@ jobs:
       - *install_dependencies
       - *save_cache
       - *run_linter
+      - *run_tests
       - *store_test_results
 
   deploy-qa:

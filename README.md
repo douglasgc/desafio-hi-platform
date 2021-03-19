@@ -1,5 +1,6 @@
 # Hi Platform Desafio de Frontend
 
+Link do desafio: https://github.com/HiPlatform/prova-frontend
 Neste repositório contem o meu Desafio para a HiPlatform. 
 Adicionei no repositório as pipelines para execução do Ci/CD.
 Ficando disponível no link: https://d2qy31ai5ix3t5.cloudfront.net/.
