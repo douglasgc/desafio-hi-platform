@@ -67,15 +67,15 @@ aliases:
         python3.5 get-pip.py --user
         pip install awscli --upgrade --user
   - &deploy_qa
-      - run:
-          name: Deploy services to QA
-          command: npm run deploy
-          no_output_timeout: 10m
+      run:
+        name: Deploy services to QA
+        command: npm run deploy
+        no_output_timeout: 10m
   - &deploy_prod
-      - run:
-          name: Deploy services to PROD
-          command: npm run deploy:prod
-          no_output_timeout: 10m
+      run:
+        name: Deploy services to PROD
+        command: npm run deploy:prod
+        no_output_timeout: 10m
 jobs:
   build:
     <<: *container_config
