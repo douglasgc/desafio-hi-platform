@@ -1,4 +1,4 @@
-# Contribuindo com a SYTI
+# Contribuindo com este repositório
 
 ## <a>Padrões de Mensagens de Commits</a>
 
@@ -20,7 +20,6 @@ Cada mensagem de commit consiste no seguinte formato:
 
 ### Escopo
 O campo escopo refere-se a **Task**, **Módulo**, **Serviço** ou a **API** cujo qual está sendo realizado o commit.<br>
-* exemplo de escopo como **Task**: sity-247, sity-254 <br>
 * exemplo de escopo como **API**: driver-controller-getBanks, driver-service-getBaseData
 * exemplo de escopo como **Serviço**: user, driver, common, admin, trips
 * exemplo de escopo como **Módulo**: driver-controller, user-service, user-module
@@ -52,7 +51,7 @@ build(clients-dashboard): instalar pacote node-sass
 refactor(driver-service-generateDriverCodes): refatorar query de pesquisa ao banco
 ```
 ```
-docs(sity-245): criar o documento CONTRIBUTING.md com a padronização dos commits
+docs(task-245): criar o documento CONTRIBUTING.md com a padronização dos commits
 ```
 
 ### Submetendo uma Pull Request
